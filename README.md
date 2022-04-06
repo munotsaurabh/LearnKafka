@@ -1,9 +1,7 @@
 # Getting started
 
 ### Prerequisites
-##### kafka-basics -> build.gradle file
-
-Add the below dependencies:
+##### Add the below dependencies in kafka-basics -> build.gradle file
 
     // https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients
     implementation 'org.apache.kafka:kafka-clients:3.1.0'
