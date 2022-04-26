@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
-public class ProducerDemoWithCallback {
+public class ProducerDemoKeys {
 
-    private static final Logger log = LoggerFactory.getLogger(ProducerDemoWithCallback.class.getSimpleName());
+    private static final Logger log = LoggerFactory.getLogger(ProducerDemoKeys.class.getSimpleName());
 
     public static void main(String[] args) {
         log.info("This is a Kafka producer");
@@ -25,12 +25,17 @@ public class ProducerDemoWithCallback {
 
         //send data - asynchronous operation
         //loop through so that the messages will be sent to different partitions
-        //Callback is used to retrieve information such as Topic name to which the data is sent, Partition number, Offset etc.
+        //All the messages that share the same key goes to the same partition
 
         for (int i=0; i<10; i++){
+
+            String topic = "demo_java";
+            String value= "hello world " +i;
+            String key = "id "+ i;
+
             //create a Producer record
             ProducerRecord<String, String> producerRecord;
-            producerRecord = new ProducerRecord<>("demo_java", "Hello World! " +i);
+            producerRecord = new ProducerRecord<>(topic, key, value); //passing key as argument
 
             producer.send(producerRecord, new Callback() {      // calling Callback
                 @Override
@@ -39,6 +44,7 @@ public class ProducerDemoWithCallback {
                     if(e==null){
                         log.info("Received new metadata/ \n" +
                                 "Topic: " +metadata.topic() + "\n" +
+                                "Key: " +producerRecord.key() + "\n" +
                                 "Partition: " +metadata.partition() + "\n" +
                                 "Offset: " +metadata.offset() + "\n" +
                                 "Timestamp: " +metadata.timestamp());
@@ -54,6 +60,7 @@ public class ProducerDemoWithCallback {
             }
 
         }
+
 
         //flush and close the Producer
         producer.flush();       //asynchronous operation

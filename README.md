@@ -21,3 +21,11 @@
 5. Flush and close the producer
 
 
+
+### Some key concepts
+`1. Producer with Callback:` Callback is used to retrieve information such as Topic name to which the data is sent, Partition number, Offset etc. (Implemented in ProducerDemoWithCallback.java)
+
+`2. Producer with keys:` The data with the same key will always go to the same partition. (Implemented in ProducerDemoKeys.java)
+
+
+
