@@ -27,5 +27,10 @@
 
 `2. Producer with keys:` The data with the same key will always go to the same partition. (Implemented in ProducerDemoKeys.java)
 
-
-
+##### Creating a consumer - kafka-basics/src/main/java/kafka/demos/ConsumerDemo.java
+1. Create properties object of class `Properties` as it is required to create Kafka properties
+2. Create `KafkaConsumer` object to consume messages from Kafka
+3. Subscribe the consumer to a topic/topics
+4. Create `ConsumerRecords` object which will keep on polling at the defined time
+5. Create `ConsumerRecord` object which has info like topic name and value i.e. message
+6. Close the consumer using the shutdown hook technique

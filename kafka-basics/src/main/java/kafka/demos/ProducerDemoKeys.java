@@ -61,7 +61,6 @@ public class ProducerDemoKeys {
 
         }
 
-
         //flush and close the Producer
         producer.flush();       //asynchronous operation
         producer.close();
